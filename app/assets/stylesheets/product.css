@@ -1,0 +1,40 @@
+/* 商品一覧 */
+.product_container {
+  width: 77%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+/* 折り返しを左寄せする用のスタイル */
+/* https://blog.webcreativepark.net/2016/08/15-125202.html */
+.product_container::after{
+  content:"";
+  display: block;
+  width: 357px;
+  margin-top: 15px;
+  margin-right: 5px;
+}
+
+/* 1商品の表示エリア */
+.product {
+  padding: 5px;
+  width: 340px;
+  cursor: pointer;
+  border: 1px solid rgb(175, 167, 167);
+  margin-top: 15px;
+  margin-right: 5px;
+  border-radius: 5%;
+}
+
+/* 商品の文字情報を表示するエリア */
+.product_info {
+  padding-left: 2px;
+}
+.product_info li {
+  list-style: none;
+}
+.product_link {
+    color : inherit;
+    text-decoration : none;
+}

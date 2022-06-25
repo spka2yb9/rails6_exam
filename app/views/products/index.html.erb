@@ -1,0 +1,19 @@
+<%= stylesheet_link_tag "product", :media => "all" %>
+
+<div class="product_container">
+  <% @products.each do |product| %>
+  <article class="product">
+    <%= link_to "/items/#{product.id}", data: {"turbolinks" => false}, class: "product_link" do %>
+    <ul class="product_info">
+      <li>ID：<%= product.no %></li>
+      <li>名前：<%= product.name %></li>
+      <li>発売日：<%= product.release_date %></li>
+      <li>説明：<%= product.description %></li>
+      <li>メーカ：<%= product.maker.name %></li>
+      <li>レビュー数：<%= product.review_sum %></li>
+      <li>レビュー評価：<%= product.review_avg %> / 5</li>
+    </ul>
+    <% end %>
+  </article>
+<% end %>
+</div>

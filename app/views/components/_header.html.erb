@@ -1,0 +1,12 @@
+<header>
+  <%= link_to "/", data: {"turbolinks" => false} do %>
+    <span class="logo_str">レイルズモール</span>
+  <% end %>
+  <div class="search_area">
+    <%= form_with url: "/", local: true do |form| %>
+    <%= form.text_field :product_search_word, :placeholder => "キーワードで検索", value: @product_search_word  %>
+    <%= form.select :order_conditon, Rails6Exam::Application.config.products_order_condition, { prompt: "並び替え" , selected: @order_conditon } %>
+    <%= form.submit "検索" %>
+  <% end %>
+  </div>
+</header>

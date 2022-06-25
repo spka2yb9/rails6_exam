@@ -1,0 +1,70 @@
+.product {
+  margin: auto;
+  display: flex;
+  width: 80%;
+  margin-bottom: 30px;
+}
+
+/* 商品画像 */
+.product_image {
+  margin-left: 1%;
+  max-width: 100%;
+  max-height: 420px;
+}
+
+/* 商品の文字情報を表示するエリア */
+.product_info {
+  width: 100%;
+  margin-left: 5px;
+  margin-left: 1%;
+}
+/* 商品名 */
+.product_name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* 商品情報のタイトル */
+.product_detail_title {
+  display: inline-block;
+  width: 15%;
+}
+/* 商品情報の内容 */
+.product_detail_content {
+  display: inline-block;
+  width: 70%;
+}
+
+/* 他商品 */
+.other_products span {
+  display: block;
+  text-align: center;
+}
+
+/* カルーセルSTART */
+.carousel {
+  margin: auto;
+  width: 400px;
+  height: 300px;
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+.carousel img {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  scroll-snap-align: start;
+}
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+.btns {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+}
+.btns button {
+  margin: 0px 4px;
+}
+/* カルーセルEND */
