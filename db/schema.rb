@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2022_06_20_041008) do
     t.integer "product_id"
     t.string "review_user_name"
     t.text "content"
-    t.string "tag"
+    t.string "tags"
     t.float "total_evaluation"
     t.integer "price_evaluation"
     t.integer "design_evaluation"

@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   get '/', to: 'products#index'
   post '/', to: 'products#index'
   get '/items/:id', to: 'products#detail'
+  get '/items/:id/reviews', to: 'reviews#index'
+  post '/items/:id/reviews', to: 'reviews#new'
 end

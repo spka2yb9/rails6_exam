@@ -57,7 +57,7 @@ def review_seed
       product_id: rand(1..PRODUCT_NUM),
       review_user_name: "テストユーザ名#{num+1}",
       content: "テストレビュー内容#{num+1}",
-      tag: "使い心地 成分 価格",
+      tags: "使い心地 成分 価格",
       total_evaluation: total_evaluation,
       price_evaluation: price_evaluation,
       design_evaluation: design_evaluation,

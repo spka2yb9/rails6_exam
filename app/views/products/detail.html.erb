@@ -25,6 +25,7 @@
         <div class="product_detail_content"><%= @product.review_sum %></div>
         <div class="product_detail_title">レビュー評価</div>
         <div class="product_detail_content"><%= @product.review_avg %> / 5</div>
+        <div><%= link_to "レビューを確認", "/items/#{@product.id}/reviews", data: {"turbolinks" => false} %></div>
       </div>
     </div>
   </div>

@@ -1,0 +1,45 @@
+.review_container {
+  width: 100%;
+}
+/* 投稿フォーム */
+.review_post {
+  text-align: center;
+}
+.review_post label {
+  vertical-align: top;
+}
+/* 他ユーザのレビュー1個分 */
+.review {
+  margin: auto;
+  padding: 10px;
+  width: 50%;
+  border: 1px solid rgb(175, 167, 167);
+  margin-top: 15px;
+  list-style: none;
+}
+.review li {
+  list-style: none;
+}
+/* タグ表示エリア */
+.tags {
+  display: flex;
+  margin: auto;
+  width: 70%;
+  gap: 0 15px;
+}
+
+/* タグ1個分 */
+.tag {
+  cursor: pointer;
+  width: 20%;
+  border: 2px solid rgb(175, 167, 167);
+}
+.selected {
+  border: 2px solid rgb(172, 196, 227)!important;
+  border-radius: 4%;
+}
+
+/* 総合評価の表示エリア */
+#total {
+  height: 20px;
+}

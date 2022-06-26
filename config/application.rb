@@ -23,6 +23,7 @@ module Rails6Exam
       "商品の新しい順" => 3
     }
 
+    config.review_tags = ["デザイン", "使い心地", "成分", "価格", "説明書"]
 
   end
 end

@@ -1,0 +1,143 @@
+<%= stylesheet_link_tag "review", :media => "all" %>
+
+<div class="review_container">
+  <div class="review_post">
+    <%= form_with model: @review, url: "/items/#{@product_id}/reviews", local: true do |form| %>
+      <%= form.hidden_field :product_id, value: @product_id %>  
+
+      <%= form.label :review_user_name, "ユーザ名" %>
+      <%= form.text_field :review_user_name, placeholder: "ユーザ名"  %><br>
+      <span>タグ</span>
+      <%= form.hidden_field :tags %>
+      <div class="tags">
+        <% Rails6Exam::Application.config.review_tags.each do |tag| %>
+        <div class="tag"><%= tag %></div>
+        <% end %>
+      </div>
+      <br>
+      <%= form.label :content, "コメント" %>
+      <%= form.text_area :content %><br>
+
+      <span>価格</span>
+      <% (1..5).each do |i| %>
+        <%= form.radio_button :price_evaluation, i %>
+        <%= form.label :price_evaluation, i.to_s %>
+      <% end %>
+
+      <br>
+      <span>デザイン</span>
+      <% (1..5).each do |i| %>
+        <%= form.radio_button :design_evaluation, i %>
+        <%= form.label :design_evaluation, i.to_s %>
+      <% end %>
+
+      <br>
+      <span>質</span>
+      <% (1..5).each do |i| %>
+        <%= form.radio_button :quality_evaluation, i %>
+        <%= form.label :quality_evaluation, i.to_s %>
+      <% end %>
+      <br>
+    
+      <%= form.hidden_field :total_evaluation %>
+      <p>総合評価</p>
+      <div id="total"></div>
+      
+      <%= form.submit "投稿", id: "submit", onclick: "return setSelectedTags()" %>
+    <% end %>
+  </div>
+
+  
+  <div class="review_list">
+    <% @reviews.each do |review| %>
+      <article class="review">
+        <ul class="review_info">
+          <li>レビュー者：<%= review.review_user_name %></li>
+          <li>タグ：<%= review.tags %></li>
+          <li>コメント：<%= review.content %></li>
+          <li>レビュー評価：<%= review.total_evaluation %></li>
+        </ul>
+      </article>
+    <% end %>
+  </div>
+</div>
+
+
+<script>
+  // レビュー評価
+  let priceEvaluation = NaN;
+  let designEvaluation = NaN;
+  let qualityEvaluation = NaN;
+
+  // 価格評価の選択時処理
+  // グローバル変数に選択された値を代入
+  document.querySelectorAll("input[name='review[price_evaluation]']").forEach(function (input) {
+    input.addEventListener('change', function(e) {
+      priceEvaluation = Number(e.target.value);
+      dispalyTotalEvaluation();
+    });
+  });
+
+  // デザイン評価の選択時処理
+  // グローバル変数に選択された値を代入
+  document.querySelectorAll("input[name='review[design_evaluation]']").forEach(function (input) {
+    input.addEventListener('change', function(e) {
+      designEvaluation = Number(e.target.value);
+      dispalyTotalEvaluation();
+    });
+  });
+
+  // 質評価の選択時処理
+  // グローバル変数に選択された値を代入
+  document.querySelectorAll("input[name='review[quality_evaluation]']").forEach(function (input) {
+    input.addEventListener('change', function(e) {
+      qualityEvaluation = Number(e.target.value);
+      dispalyTotalEvaluation();
+    });
+  });
+
+  // タグ評価の選択時処理
+  document.querySelectorAll(".tag").forEach(function (tag) {
+    tag.addEventListener('click', function(e) {
+      tag.classList.toggle('selected')
+    });
+  });
+
+  // hidden項目に選択されたタグを文字列としてセット
+  function setSelectedTags() {
+    selectedTags = "";
+    document.querySelectorAll(".selected").forEach(function (tag) {
+      // 半角空白繋ぎで結合
+      selectedTags += tag.innerText + " "
+    });
+    // 末尾の空白を削除
+    selectedTags = selectedTags.slice(0, -1);
+    document.getElementById("review_tags").value = selectedTags;
+    return true;
+  }
+
+  // 総合評価を表示
+  function dispalyTotalEvaluation() {
+    // 総合評価の値を取得
+    const totalEvaluation = calcTotalEvaluation();
+    if (totalEvaluation) {
+      document.getElementById("total").innerText = totalEvaluation;
+      document.getElementById("review_total_evaluation").value = totalEvaluation
+    }
+  }
+
+  // 総合評価を計算
+  // 総合評価 = 価格・デザイン・質の平均値
+  function calcTotalEvaluation() {
+    // すべての評価項目が選択されていれば計算
+    if (!isNaN(priceEvaluation) 
+    && !isNaN(designEvaluation) 
+    && !isNaN(qualityEvaluation)) {
+
+      let totalEvaluation =  (priceEvaluation + designEvaluation + qualityEvaluation) / 3;
+      totalEvaluation = Math.floor(totalEvaluation * 10) / 10;
+      return totalEvaluation;
+    }
+  }
+  
+</script>
